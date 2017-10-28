@@ -1,6 +1,6 @@
 module.exports = function (mongoose, q) {
 
-    var EventSchema = require('./event.schema.server')(mongoose);
+    var EventSchema = require('./colors.schema.server')(mongoose);
     var EventModel = mongoose.model('EventModel', EventSchema);
 
     var api = {

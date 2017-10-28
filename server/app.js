@@ -20,11 +20,5 @@ module.exports = function (app) {
 
     var model = require('./model/model.server')(mongoose);
 
-    require("./services/user.service.server.js")(app, model.userModel, model.vendorModel);
-    require("./services/event.service.server.js")(app, model.eventModel);
-    require("./services/service.service.server.js")(app, model.serviceModel);
-    require("./services/vendor.service.server.js")(app, model.vendorModel);
-    require("./services/invite.service.server")(app, model.inviteModel);
-    require("./services/order.service.server")(app, model.orderModel);
-    require("./services/shopping.service.server")(app, model.shoppingModel);
+    require("./services/colors.service.server.js")(app, model.eventModel);
 };

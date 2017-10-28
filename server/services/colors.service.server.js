@@ -1,16 +1,6 @@
 
 module.exports = function (app, eventModel) {
     app.post("/api/user/:hostId/event", createEvent);
-    app.get("/api/user/:hostId/event", findEventsForUser);
-    app.get("/api/guest/event/guests/:eventId", findAllGuestsForEvent);
-    app.get("/api/guest/event/products/:eventId", findAllProductsForEvent);
-    app.get("/api/guest/event/orders/:eventId", findAllOrdersForEvent);
-    app.get("/api/event/:eventId", findEventById);
-    app.put("/api/event/:eventId", updateEvent);
-    app.delete("/api/event/:eventId", deleteEvent);
-    app.put("/api/event/:eventId/guest/:guestId", addGuest);
-    app.put("/api/event/:eventId/order/:orderId", addOrder);
-    app.put("/api/event/:eventId/product/:productId", addProduct);
 
     function createEvent(req, res) {
         var hostID = req.params.hostId;

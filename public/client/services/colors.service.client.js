@@ -11,8 +11,8 @@
 
         return api;
 
-        function createEventForUser(hostId, event) {
-            return $http.post("/api/user/" + hostId + "/event", event);
+        function createEventForUser(userColors) {
+            return $http.post("/api/colors/"+userColors);
         }
     }
 
