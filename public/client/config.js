@@ -8,45 +8,13 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when("/", {
-                templateUrl: "views/home/templates/home.view.client.html",
+            .when("/colors", {
+                templateUrl: "views/colors/templates/colors.view.client.html",
                 controller: "ColorsController",
                 controllerAs: "model"
             })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/colors"
             });
     }
-
-    var checkUserLoggedin = function($q, $timeout, $http, $location, $rootScope) {
-        var deferred = $q.defer();
-        $http.get('/api/loggedin').then(function(user) {
-            $rootScope.errorMessage = null;
-            user = user.data;
-            if (user !== '0') {
-                deferred.resolve();
-            } else {
-                deferred.reject();
-                $location.url('/home');
-            }
-        });
-        return deferred.promise;
-    };
-
-    var checkVendorLoggedin = function($q, $timeout, $http, $location, $rootScope) {
-        var deferred = $q.defer();
-        $http.get('/api/vendor/loggedin').then(function(vendor) {
-            $rootScope.errorMessage = null;
-            vendor = vendor.data;
-            if (vendor !== '0') {
-                deferred.resolve();
-            } else {
-                deferred.reject();
-                $location.url('/home');
-            }
-        });
-        return deferred.promise;
-    };
-
-
 })();

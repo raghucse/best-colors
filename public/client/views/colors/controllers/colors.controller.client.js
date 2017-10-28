@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("ColorsController", EventEditController);
+        .controller("ColorsController", ColorsController);
 
-    function EventEditController($routeParams, EventService,$location) {
+    function ColorsController($routeParams,$location) {
         var vm = this;
 
         function init() {
@@ -12,7 +12,5 @@
 
         function submitColor(event) {
         }
-
-
     }
 })();
