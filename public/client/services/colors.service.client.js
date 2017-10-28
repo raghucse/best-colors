@@ -12,7 +12,7 @@
         return api;
 
         function createEventForUser(userColors) {
-            return $http.post("/api/colors/"+userColors);
+            return $http.post("/app/colors/"+userColors);
         }
     }
 
