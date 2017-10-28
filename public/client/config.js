@@ -10,7 +10,7 @@
         $routeProvider
             .when("/", {
                 templateUrl: "views/home/templates/home.view.client.html",
-                controller: "HomeController",
+                controller: "ColorsController",
                 controllerAs: "model"
             })
             .otherwise({

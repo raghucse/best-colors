@@ -12,11 +12,11 @@ module.exports = function (app, userModel, vendorModel) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
+ //   var FacebookStrategy = require('passport-facebook').Strategy;
     var auth = authorized;
 
     passport.use('user',new LocalStrategy(localStrategy));
-    passport.use('facebookUser',new FacebookStrategy(facebookConfig, facebookStrategy));
+  //  passport.use('facebookUser',new FacebookStrategy(facebookConfig, facebookStrategy));
 
     app.post('/api/user/login/user', passport.authenticate('user','local'), login);
     app.post('/api/user/logout', logout);
@@ -29,7 +29,7 @@ module.exports = function (app, userModel, vendorModel) {
     app.delete("/api/user/:userID", deleteUser);
     app.put("/api/user/:userId/website/:websiteId", addWebsite);
     app.get('/api/loggedin', loggedin);
-    app.get('/auth/user/facebook', passport.authenticate('facebookUser', { scope : 'email' }));
+  //  app.get('/auth/user/facebook', passport.authenticate('facebookUser', { scope : 'email' }));
 
     app.get('/auth/user/facebook/callback',
         passport.authenticate('facebookUser', {

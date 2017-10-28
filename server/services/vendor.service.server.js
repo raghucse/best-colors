@@ -13,7 +13,7 @@ module.exports = function(app, vendorModel) {
     var bcrypt = require("bcrypt-nodejs");
 
     passport.use('vendor', new LocalStrategy(localStrategy));
-    passport.use('facebookVendor',new FacebookStrategy(facebookConfig, facebookStrategy));
+ //   passport.use('facebookVendor',new FacebookStrategy(facebookConfig, facebookStrategy));
 
     var auth = authorized;
 
