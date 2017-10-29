@@ -24,7 +24,8 @@
           var canvas = document.getElementById(id);
           var ctx = canvas.getContext('2d');
           img.onload = function() {
-              let dimensions = scaleByRes(.1, img);
+              //let dimensions = scaleByRes(.25, img);
+              let dimensions = scaleByPixels(true, document.getElementsByClassName('main-col')[0].offsetWidth, img);
               //console.log(`Current dimensions: ${dimensions.width}, ${dimensions.height}`);
               canvas.width = dimensions.width; //change size of canvas based on scaling
               canvas.height = dimensions.height;
@@ -37,8 +38,9 @@
               var y = event.layerY;
               var pixel = ctx.getImageData(x, y, 1, 1);
               var data = pixel.data;
+              console.log("000000" + rgbToHex(data[0], data[1], data[2]).slice(-6));
               var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-              color.textContent = hex;
+              //color.textContent = hex;
           }
           canvas.addEventListener('click', pick);
         }
