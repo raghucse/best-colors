@@ -14,10 +14,15 @@
               <h4><strong>Price: <span class="text-muted">{{item.salePrice}}$</span></strong></h4>
               <h4><strong>Shipping Rate: <span class="text-muted">{{item.standardShipRate}}$</span></strong></h4>
             </div>
-            </div>
           </div>
         </div>
       </li>
     </div>
   </ul>
+
+  <h3>Total: {{model.totalPrice}}</h3>
+  <button type="button" class="btn" ng-click="model.placeOrder()">Place Order</button>
+
+
+
 </div>
