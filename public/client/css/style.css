@@ -5,7 +5,7 @@ body {
 }
 
 /* text recolor */
-h1, p, a {
+p, a {
   color: #4DC9C9 !important;
 }
 
@@ -63,4 +63,10 @@ border-color: #6C6C6C !important;
 
 .search-query:focus + button {
   z-index: 3;
+}
+
+.form-title{
+  text-align: center;
+  color: black;
+  font-weight: bold;
 }
