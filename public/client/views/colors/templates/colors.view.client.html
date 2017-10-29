@@ -2,10 +2,24 @@
 
 <!--Warm-->
 <div class="container-fliud">
+  <ul class="nav nav-pills">
+    <li ng-class="{ active: model.isSet(1) }">
+      <a href ng-click="model.setTab(1)">Warm</a>
+    </li>
+    <li ng-class="{ active: model.isSet(2) }">
+      <a href ng-click="model.setTab(2)">Deep Warm</a>
+    </li>
+    <li ng-class="{ active: model.isSet(3) }">
+    <a href ng-click="model.setTab(3)">Cool</a>
+  </li>
+    <li ng-class="{ active: model.isSet(4) }">
+      <a href ng-click="model.setTab(4)">Deep Cool</a>
+    </li>
+  </ul>
 
-  <div class="col-sm-3 main-col">
+
+  <div ng-show="model.isSet(1)" class="main-col">
     <div class="form-group">
-      <h2>Warm</h2>
       <label for="sel1">Skin Tone</label>
       <select class="form-control" id="sel1">
         <option>ivory</option>
@@ -65,9 +79,8 @@
   </div>
 
   <!--Deep Warm-->
-  <div class="col-sm-3 main-col">
+  <div ng-show="model.isSet(2)" class="main-col">
     <div class="form-group">
-      <h2>Deep Warm</h2>
       <label for="sel1">Skin Tone</label>
       <select class="form-control" id="sel1">
         <option>ivory</option>
@@ -121,9 +134,8 @@
 
 
   <!--Cool-->
-  <div class="col-sm-3 main-col">
+  <div ng-show="model.isSet(3)" class="main-col">
     <div class="form-group">
-      <h2>Cool</h2>
       <label for="sel1">Skin Tone</label>
       <select class="form-control" id="sel1">
         <option>fair</option>
@@ -194,10 +206,9 @@
   </div>
 
   <!--Deep Cool-->
-  <div class="col-sm-3 main-col">
+  <div ng-show="model.isSet(4)" class="main-col">
 
     <div class="form-group">
-      <h2>Deep Cool</h2>
       <label for="sel1">Skin Tone</label>
       <select class="form-control" id="sel1">
         <option>ivory</option>

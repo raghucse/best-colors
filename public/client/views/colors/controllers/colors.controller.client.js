@@ -5,15 +5,27 @@
 
     function ColorsController($location,$rootScope,colorService) {
         var vm = this;
-        vm.searchItems = searchItems
+        vm.searchItems = searchItems;
+        vm.setTab = setTab;
+        vm.isSet = isSet;
+        var tab;
 
         function init() {
+            tab = 1;
           initImage('../image/warm.png', 'warm-canvas');
           initImage('../image/deep_warm.png', 'deep-warm-canvas');
           initImage('../image/cool.png', 'cool-canvas');
           initImage('../image/deep cool.png', 'deep-cool-canvas');
         }
         init();
+
+        function setTab(newTab){
+            tab = newTab;
+        }
+
+        function isSet(tabNum){
+            return tab === tabNum;
+        }
 
         function searchItems() {
             colorService
@@ -32,7 +44,7 @@
           img.onload = function() {
               //var dimensions = scaleByRes(.1, img);
               console.log(document.getElementsByClassName('main-col')[0].offsetWidth);
-              let dimensions = scaleByPixels(true, document.getElementsByClassName('main-col')[0].offsetWidth, img);
+              var dimensions = scaleByPixels(true, document.getElementsByClassName('main-col')[0].offsetWidth, img);
               //console.log(`Current dimensions: ${dimensions.width}, ${dimensions.height}`);
               canvas.width = dimensions.width; //change size of canvas based on scaling
               canvas.height = dimensions.height;
