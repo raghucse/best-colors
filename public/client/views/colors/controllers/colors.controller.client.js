@@ -25,15 +25,13 @@
           'orange','orange','orange','orange','orange', 'orange', 'orange', 'orange', 'yellow', 'yell0w','yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yell0w', 'yellow','yellow','yell0w','yellow',
           'red','red','red', 'red','red', 'red', 'red','red','red', 'red','navy','navy','navy','navy', 'navy', 'navy', 'purple', 'purple', 'purple', 'purple', 'purple', 'green', 'green', 'green', 'green',
           'brown', 'brown', 'brown', 'brown','brown','brown','brown','brown','brown',
-          'soft emerald', 'soft teal', 'cool green', 'soft green', 'watermelon', 'rose', 'cool red', 'cool pink', 'rose brown', 'rose beige', 'soft yellow', 'soft white', 'orchid','soft fuchsia', 'mauve', 'soft raspberry', 'azure', 'soft blue', 'baby blue', 'soft turquoise',
-          'soft plum', 'soft violet', 'lavender', 'periwinkle', 'blue','grey', 'soft charcoal', 'soft cool grey',
+          'soft emerald', 'soft teal', 'cool green', 'soft green', 'watermelon', 'cool rose', 'cool red', 'cool pink', 'rose brown', 'rose beige', 'soft yellow', 'soft white', 'orchid','soft fuchsia', 'mauve', 'soft raspberry', 'azure', 'soft blue', 'baby blue', 'soft turquoise',
+          'soft plum', 'soft violet', 'lavender', 'periwinkle', 'blue grey', 'soft charcoal', 'soft cool grey', 'cool grey',
           'navy blue', 'navy blue', 'navy blue', 'navy blue',
           'violet', 'violet', 'violet', 'violet',
           'green', 'green', 'green', 'green',
           'red', 'red', 'red', 'red', 'red', 'red', 'red','red','red','red','red','red',
           'black', 'black', 'black', 'black'];
-          console.log(keystring.length);
-          console.log(setkeystring.length);
           for (var index=0;index<keystring.length;index++) {
               myMap.set(keystring[index],setkeystring[index]);
           }
@@ -49,12 +47,14 @@
         }
 
         function searchItems() {
+          if (vm.color.length>0) {
             colorService
                 .searchItem(vm.color+" "+vm.searchQuery)
                 .then(function (data) {
                 $rootScope.items = data.items;
                 $location.url("/list");
-            });
+                });
+          }
         }
 
         function initImage(src, id) {
@@ -80,11 +80,21 @@
               var data = pixel.data;
               console.log("000000" + rgbToHex(data[0], data[1], data[2]).slice(-6));
               var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-              color.style.background = hex;
-              color.textcontent = hex;
-              vm.color = myMap.get(hex);
+              if (hex!='#000000') {
+                color.style.background = hex;
+                color.textcontent = hex;
+                if (myMap.get(hex) == undefined && (hex[1]=='e' || hex[1]=='f')){
+                  vm.color = 'gold'
+                }
+                else if (myMap.get(hex) == undefined && (hex[1]!='e' && hex[1]!='f')) {
+                  vm.color = 'silver';
+                }
+                else {
+                  vm.color = myMap.get(hex);
+                }
+              }
               console.log(vm.color);
-          }
+            }
           canvas.addEventListener('click', pick);
         }
 
