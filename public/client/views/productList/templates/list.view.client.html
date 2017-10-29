@@ -1,42 +1,324 @@
-<div class="container-fluid borderless">
-  <ul class="list-group borderless">
-    <div ng-repeat="item in model.items">
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-xs-2"><img class="img-responsive" src={{item.mediumImage}}>
-          </div>
-          <div class="col-xs-4">
-            <h4 class="product-name"><strong>{{item.name}}</strong></h4>
-            <img  ng-if="item.customerRatingImage" height="18  " width="80" src={{item.customerRatingImage}}>
-          </div>
-          <div class="col-xs-6">
-            <div class="col-xs-6 text-right">
-              <h4><strong>Price: <span class="text-muted">{{item.salePrice}}$</span></strong></h4>
-              <h4><strong>Shipping Rate: <span class="text-muted">{{item.standardShipRate}}$</span></strong></h4>
-            </div>
-            <div class="col-xs-4">
-              <label for="Quantity">quantity</label>
-              <input id="Quantity" type="text" class="form-control input-sm" ng-model="item.quantity" value="1">
-            </div>
-            <div class="col-xs-2">
-              <div ng-if="!item.added">
-                <button type="button" ng-click="model.addItem(item)" class="btn btn-primary btn-md">
-                  Add
-                </button>
-              </div>
-              <div ng-if="item.added">
-                <button type="button" ng-click="model.addItem(item)" class="btn btn-success btn-md">
-                  Add More
-                </button>
-              </div>
-          </div>
-            <div class="col-xs-2">
-              <button type="button" ng-click="model.checkOut(item)" class="btn btn-primary btn-md">
-                Checkout
-              </button>
-            </div>
-        </div>
-      </li>
-    </div>
+<!-- <script type="text/javascript" src="color.js"></script> -->
+
+<!--Warm-->
+<div class="container-fliud">
+  <ul class="nav nav-pills">
+    <li ng-class="{ active: model.isSet(1) }">
+      <a href ng-click="model.setTab(1)">Warm</a>
+    </li>
+    <li ng-class="{ active: model.isSet(2) }">
+    <a href ng-click="model.setTab(2)">Deep Warm</a>
+    </li>
+    <li ng-class="{ active: model.isSet(3) }">
+    <a href ng-click="model.setTab(3)">Cool</a>
+    </li>
+    <li ng-class="{ active: model.isSet(4) }">
+      <a href ng-click="model.setTab(4)">Deep Cool</a>
+    </li>
   </ul>
+
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="sel1">Skin Tone</label>
+      <select class="form-control" id="sel1">
+        <option>ivory</option>
+        <option>fair ivory</option>
+        <option>creamy white</option>
+        <option>creamy peach</option>
+        <option>peachy</option>
+        <option>peachy beige</option>
+        <option>apricot</option>
+        <option>golden beig</option>
+        <option>golden brown</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Eye Color</label>
+      <select class="form-control" id="sel1">
+        <option>warm brown</option>
+        <option>amber</option>
+        <option>warm hazel</option>
+        <option>warm blue</option>
+        <option>warm green</option>
+        <option>warm aqua</option>
+        <option>golden flecks inside iris</option>
+        <option>warm and light</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Hair Color</label>
+      <select class="form-control" id="sel1">
+        <option>golden brown (from light to medium)</option>
+        <option>brown (from light to medium)</option>
+        <option>golden blonde (from light to medium)</option>
+        <option>reddish blonde</option>
+        <option>redhead</option>
+        <option>auburn</option>
+        <option>warm golden gray</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Overall Coloring</label>
+      <select class="form-control" id="sel1">
+        <option>light and low intensity complexion</option>
+        <option>low contrast between hair, eyes, and skin.</option>
+      </select>
+    </div>
+    <!--<div class="form-group">
+      <img src="https://preview.ibb.co/mzawBR/warm.png" alt="warm" border="0" width="230px;" length="230px;">
+    </div>
+  -->
+    <canvas id="warm-canvas" width="230px;" length="230px;">
+
+    </canvas>
+
+    <div class="form-group center-block">
+      <div id="color" style="width:0px;height:0px;position: center"></div>
+    </div>
+
+    <div class="form-group">
+              <h2>Search Item</h2>
+              <div id="custom-search-input-cool">
+                  <div class="input-group col-md-12">
+                      <input type="text" ng-model="model.searchQuery" class="  search-query form-control" placeholder="Search" />
+                      <span class="input-group-btn">
+                              <button ng-click="model.searchItems()" class="btn btn-danger" type="button">
+                                   <span class=" glyphicon glyphicon-search"></span>
+                              </button>
+                       </span>
+                  </div>
+              </div>
+    </div>
+
+  </div>
+
+  <!--Deep Warm-->
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="sel1">Skin Tone</label>
+      <select class="form-control" id="sel1">
+        <option>ivory</option>
+        <option>peachy</option>
+        <option>beige</option>
+        <option>golden beige</option>
+        <option>golden brown</option>
+        <option>warm black</option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Eye Color</label>
+      <select class="form-control" id="sel1">
+        <option>soft blue</option>
+        <option>soft gray</option>
+        <option>soft blue-gray</option>
+        <option>gray-hazel</option>
+        <option>blue-green</option>
+        <option>rosy brown</option>
+        <option>white flecks inside iris</option>
+        <option>gray rim around iris</option>
+        <option>soft, light and cool </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Hair Color</label>
+      <select class="form-control" id="sel1">
+        <option>ash brown (from light to medium)</option>
+        <option>ash blonde (from light to dark) </option>
+        <option>platinum blonde</option>
+        <option>cool gray</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Overall Coloring</label>
+      <select class="form-control" id="sel1">
+        <option>strong, deep and high intensity complexion</option>
+        <option>high contrast between hair, eyes, and skin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <canvas id="deep-warm-canvas" width="230px;" length="230px;"></canvas>
+    </div>
+
+    <div class="form-group center-block">
+      <div id="color" style="width:0px;height:0px;position: center"></div>
+    </div>
+
+    <div class="form-group">
+              <h2>Search Item</h2>
+              <div id="custom-search-input-cool">
+                  <div class="input-group col-md-12">
+                      <input type="text" ng-model="model.searchQuery" class="  search-query form-control" placeholder="Search" />
+                      <span class="input-group-btn">
+                              <button ng-click="model.searchItems()" class="btn btn-danger" type="button">
+                                   <span class=" glyphicon glyphicon-search"></span>
+                              </button>
+                       </span>
+                  </div>
+              </div>
+    </div>
+
+  </div>
+
+
+  <!--Cool-->
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="sel1">Skin Tone</label>
+      <select class="form-control" id="sel1">
+        <option>fair</option>
+        <option>translucent</option>
+        <option>pale pink</option>
+        <option>light rosy</option>
+        <option>rosy beige</option>
+        <option>rosy brown</option>
+        <option>pale beige</option>
+        <option>gray-brown</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Eye Color</label>
+      <select class="form-control" id="sel1">
+        <option>soft blue</option>
+        <option>soft gray</option>
+        <option>soft blue-gray</option>
+        <option>gray-hazel</option>
+        <option>blue-green</option>
+        <option>rosy brown</option>
+        <option>white flecks inside iris</option>
+        <option>gray rim around iris</option>
+        <option>soft, light and cool </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Hair Color</label>
+      <select class="form-control" id="sel1">
+        <option>ash brown (from light to medium)</option>
+        <option>ash blonde (from light to dark) </option>
+        <option>platinum blonde</option>
+        <option>cool gray</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Overall Coloring</label>
+      <select class="form-control" id="sel1">
+        <option>soft, light, and low intensity </option>
+        <option>low contrast between hair, eyes, and skin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <canvas id="cool-canvas" width="300px;" length="300px;"></canvas>
+    </div>
+
+
+    <div class="form-group center-block">
+      <div id="color" style="width:0px;height:0px;position: center"></div>
+    </div>
+
+    <div class="form-group">
+              <h2>Search Item</h2>
+              <div id="custom-search-input-cool">
+                  <div class="input-group col-md-12">
+                      <input type="text" ng-model="model.searchQuery" class="  search-query form-control" placeholder="Search" />
+                      <span class="input-group-btn">
+                              <button ng-click="model.searchItems()" class="btn btn-danger" type="button">
+                                   <span class=" glyphicon glyphicon-search"></span>
+                              </button>
+                       </span>
+                  </div>
+              </div>
+    </div>
+  </div>
+
+  <!--Deep Cool-->
+  <div class="col-sm-3">
+
+    <div class="form-group">
+      <label for="sel1">Skin Tone</label>
+      <select class="form-control" id="sel1">
+        <option>ivory</option>
+        <option>peachy</option>
+        <option>beige</option>
+        <option>golden beige</option>
+        <option>golden brown</option>
+        <option>warm black</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Eye Color</label>
+      <select class="form-control" id="sel1">
+        <option>Dark brown</option>
+        <option>golden brown</option>
+        <option>amber</option>
+        <option>golden hazel</option>
+        <option>blue</option>
+        <option>green</option>
+        <option>aqua</option>
+        <option>teal</option>
+        <option>golden flecks</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Hair Color</label>
+      <select class="form-control" id="sel1">
+        <option>black</option>
+        <option>red</option>
+        <option>red-brown</option>
+        <option>dark golden brown</option>
+        <option>dark auburn</option>
+        <option>golden blonde</option>
+        <option>golden grey</option>
+        <option></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Overall Coloring</label>
+      <select class="form-control" id="sel1">
+        <option>strong, deep and high intensity complexion</option>
+        <option>high contrast between hair, eyes, and skin</option>
+      </select>
+    </div>
+
+    <!--div class="form-group">
+      <img src="https://preview.ibb.co/fWtNkm/deep_cool.png" alt="warm" border="0" width="230px;" length="230px;">
+    </div>-->
+  <div class="form-group">
+      <canvas id="deep-cool-canvas" width="230px;" length="230px;">
+
+      </canvas>
+  </div>
+
+  <div class="form-group center-block">
+    <div id="color" style="width:0px;height:0px;position: center"></div>
+  </div>
+
+  <div class="form-group">
+            <h2>Search Item</h2>
+            <div id="custom-search-input-cool">
+                <div class="input-group col-md-12">
+                    <input type="text" ng-model="model.searchQuery" class="  search-query form-control" placeholder="Search" />
+                    <span class="input-group-btn">
+                            <button ng-click="model.searchItems()" class="btn btn-danger" type="button">
+                                 <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                     </span>
+                </div>
+            </div>
+  </div>
+  </div>
 </div>
