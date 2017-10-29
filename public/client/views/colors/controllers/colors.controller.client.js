@@ -83,15 +83,7 @@
               var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
               color.style.background = hex;
               color.textcontent = hex;
-              if (vm.color == undefined && (hex[1]=='e' || hex[1]=='f')) {
-                  vm.color = 'gold';
-              }
-              else if (vm.color == undefined && (hex[1]!='e' && hex[1]!='f')) {
-                  vm.color = 'silver';
-              }
-              else {
-                vm.color = myMap.get(hex);
-              }
+              vm.color = myMap.get(hex);
               console.log(vm.color);
           }
           canvas.addEventListener('click', pick);
