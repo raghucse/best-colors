@@ -18,6 +18,11 @@
                 controller: "ColorsController",
                 controllerAs: "model"
             })
+            .when("/op", {
+                templateUrl: "views/orderPlaced/templates/op.view.client.html",
+                controller: "OpController",
+                controllerAs: "model"
+            })
             .when("/checkout", {
                 templateUrl: "views/checkout/templates/checkout.view.client.html",
                 controller: "CheckoutController",
