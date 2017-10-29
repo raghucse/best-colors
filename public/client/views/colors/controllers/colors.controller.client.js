@@ -3,12 +3,10 @@
         .module("WebAppMaker")
         .controller("ColorsController", ColorsController);
 
-    var colors = {
 
-    };
-
-    function ColorsController($routeParams,$location) {
+    function ColorsController($location,$rootScope,colorService) {
         var vm = this;
+        vm.searchItems = searchItems
 
         function init() {
           initImage('../image/warm.png', 'warm-canvas');
@@ -17,6 +15,15 @@
           initImage('../image/deep cool.png', 'deep-cool-canvas');
         }
         init();
+
+        function searchItems() {
+            colorService
+                .searchItem(vm.color+" "+vm.searchQuery)
+                .then(function (data) {
+                $rootScope.items = data.items;
+                $location.url("/list");
+            });
+        }
 
         function initImage(src, id) {
           var img = new Image();
@@ -38,12 +45,10 @@
               var pixel = ctx.getImageData(x, y, 1, 1);
               var data = pixel.data;
               var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-              color.textContent = hex;
+              color.style.background = hex;
+              vm.color = "Black";
           }
           canvas.addEventListener('click', pick);
-        }
-
-        function submitColor(event) {
         }
 
         function rgbToHex(r, g, b) {

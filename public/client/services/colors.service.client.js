@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .factory("ColorsService", eventService);
+        .factory("colorService", colorService);
 
-    function eventService($http) {
+    function colorService($http) {
 
         var api = {
             "searchItem": searchItem,
@@ -12,6 +12,7 @@
         return api;
 
         function searchItem(query) {
+            console.log(query);
             var urlBase = "https://api.walmartlabs.com/v1/search?apiKey=cpdgmcduc6zz85n7zau6f5zz&query=API_QUERY";
             var url = urlBase.replace("API_QUERY", query);
             return $.ajax({
