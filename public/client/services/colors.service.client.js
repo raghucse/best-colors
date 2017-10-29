@@ -6,7 +6,7 @@
     function eventService($http) {
 
         var api = {
-            "createEventForUser": createEventForUser,
+            "searchItem": searchItem,
         };
 
         return api;
