@@ -3,7 +3,6 @@
         .module("WebAppMaker")
         .controller("ColorsController", ColorsController);
 
-
     function ColorsController($location,$rootScope,colorService) {
         var vm = this;
         vm.searchItems = searchItems
@@ -31,12 +30,9 @@
           var canvas = document.getElementById(id);
           var ctx = canvas.getContext('2d');
           img.onload = function() {
-<<<<<<< HEAD
-              //let dimensions = scaleByRes(.25, img);
+              //var dimensions = scaleByRes(.1, img);
+              console.log(document.getElementsByClassName('main-col')[0].offsetWidth);
               let dimensions = scaleByPixels(true, document.getElementsByClassName('main-col')[0].offsetWidth, img);
-=======
-              var dimensions = scaleByRes(.1, img);
->>>>>>> 44e0589da18b3e2479de55829d9865b60cb3a094
               //console.log(`Current dimensions: ${dimensions.width}, ${dimensions.height}`);
               canvas.width = dimensions.width; //change size of canvas based on scaling
               canvas.height = dimensions.height;
@@ -51,12 +47,9 @@
               var data = pixel.data;
               console.log("000000" + rgbToHex(data[0], data[1], data[2]).slice(-6));
               var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-<<<<<<< HEAD
-              //color.textContent = hex;
-=======
               color.style.background = hex;
+              color.textcontent = hex;
               vm.color = "Black";
->>>>>>> 44e0589da18b3e2479de55829d9865b60cb3a094
           }
           canvas.addEventListener('click', pick);
         }
