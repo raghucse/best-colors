@@ -3,31 +3,45 @@
         .module("WebAppMaker")
         .controller("ColorsController", ColorsController);
 
+    let colors = {
+
+    };
+
     function ColorsController($routeParams,$location) {
         var vm = this;
 
         function init() {
-            var img = new Image();
-            img.src = '../../image/deep_warm.png';
-            var canvas = document.getElementById('warm-canvas');
-            var ctx = canvas.getContext('2d');
-            img.onload = function() {
-                ctx.drawImage(img, 0, 0);
-                img.style.display = 'none';
-            };
-            var color = document.getElementById('color');
-            function pick(event) {
-                var x = event.layerX;
-                var y = event.layerY;
-                var pixel = ctx.getImageData(x, y, 1, 1);
-                var data = pixel.data;
-                var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-                color.style.background =  hex;
-                color.textContent = hex;
-            }
-            canvas.addEventListener('mousemove', pick);
+          initImage('../image/warm.png', 'warm-canvas');
+          initImage('../image/deep_warm.png', 'deep-warm-canvas');
+          initImage('../image/cool.png', 'cool-canvas');
+          initImage('../image/deep cool.png', 'deep-cool-canvas');
         }
         init();
+
+        function initImage(src, id) {
+          var img = new Image();
+          img.src = src;
+          var canvas = document.getElementById(id);
+          var ctx = canvas.getContext('2d');
+          img.onload = function() {
+              let dimensions = scaleByRes(.1, img);
+              //console.log(`Current dimensions: ${dimensions.width}, ${dimensions.height}`);
+              canvas.width = dimensions.width; //change size of canvas based on scaling
+              canvas.height = dimensions.height;
+              ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+              img.style.display = 'none';
+          };
+          var color = document.getElementById('color');
+          function pick(event) {
+              var x = event.layerX;
+              var y = event.layerY;
+              var pixel = ctx.getImageData(x, y, 1, 1);
+              var data = pixel.data;
+              var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
+              color.textContent = hex;
+          }
+          canvas.addEventListener('click', pick);
+        }
 
         function submitColor(event) {
         }
@@ -37,5 +51,19 @@
                 throw "Invalid color component";
             return ((r << 16) | (g << 8) | b).toString(16);
         }
+    }
+
+    function scaleByRes(resolution, image) {
+      return {
+        width: image.width * resolution,
+        height: image.height * resolution
+      };
+    }
+
+    function scaleByPixels(scaleByWidth, pixels, image) {
+      if(scaleByWidth)
+        return scaleByRes(pixels / image.width, image);
+      else
+        return scaleByRes(pixels / image.height, image);
     }
 })();

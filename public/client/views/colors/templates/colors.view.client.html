@@ -1,4 +1,4 @@
-<script type="text/javascript" src="color.js"></script>
+<!-- <script type="text/javascript" src="color.js"></script> -->
 
 <!--Warm-->
 <div class="col-sm-3">
@@ -52,10 +52,17 @@
       <option>low contrast between hair, eyes, and skin.</option>
     </select>
   </div>
+  <form>
+    <textarea name="warm-textarea" rows="1" cols="10"></textarea>
+  </form>
 
-  <div class="form-group">
+  <!--<div class="form-group">
     <img src="https://preview.ibb.co/mzawBR/warm.png" alt="warm" border="0" width="230px;" length="230px;">
   </div>
+-->
+  <canvas id="warm-canvas" width="230px;" length="230px;">
+
+  </canvas>
 
 </div>
 
@@ -107,11 +114,14 @@
       <option>high contrast between hair, eyes, and skin</option>
     </select>
   </div>
+  <form>
+    <textarea name="deep-warm-textarea" rows="1" cols="10"></textarea>
+  </form>
 
-  <div class="form-group">
+  <!--<div class="form-group">
     <img src="https://preview.ibb.co/iVDcJ6/deep_warm.png" alt="warm" border="0" width="230px;" length="230px;">
-  </div>
-    <canvas id="warm-canvas" width="230px;" length="230px;">
+  </div> -->
+    <canvas id="deep-warm-canvas" width="230px;" length="230px;">
 
     </canvas>
 
@@ -171,9 +181,17 @@
     </select>
   </div>
 
-  <div class="form-group">
+  <form>
+    <textarea name="cool-textarea" rows="1" cols="10"></textarea>
+  </form>
+
+  <!--<div class="form-group">
     <img src="https://preview.ibb.co/fuTBd6/cool.png" alt="warm" border="0" width="230px;" length="230px;">
-  </div>
+  </div>-->
+  <canvas id="cool-canvas" width="230px;" length="230px;">
+
+  </canvas>
+
 </div>
 
 <!--Deep Cool-->
@@ -228,7 +246,15 @@
     </select>
   </div>
 
-  <div class="form-group">
+  <form>
+    <textarea name="deep-cool-textarea" rows="1" cols="10"></textarea>
+  </form>
+
+  <!--div class="form-group">
     <img src="https://preview.ibb.co/fWtNkm/deep_cool.png" alt="warm" border="0" width="230px;" length="230px;">
-  </div>
+  </div>-->
+
+  <canvas id="deep-cool-canvas" width="230px;" length="230px;">
+
+  </canvas>
 </div>
