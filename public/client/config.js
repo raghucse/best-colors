@@ -17,6 +17,11 @@
                 templateUrl: "views/colors/templates/colors.view.client.html",
                 controller: "ColorsController",
                 controllerAs: "model"
+            })
+            .when("/checkout", {
+                templateUrl: "views/checkout/templates/checkout.view.client.html",
+                controller: "CheckoutController",
+                controllerAs: "model"
             });
     }
 })();
