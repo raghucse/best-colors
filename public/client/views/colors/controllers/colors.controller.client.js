@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("ColorsController", ColorsController);
 
-    let colors = {
+    var colors = {
 
     };
 
@@ -24,7 +24,7 @@
           var canvas = document.getElementById(id);
           var ctx = canvas.getContext('2d');
           img.onload = function() {
-              let dimensions = scaleByRes(.1, img);
+              var dimensions = scaleByRes(.1, img);
               //console.log(`Current dimensions: ${dimensions.width}, ${dimensions.height}`);
               canvas.width = dimensions.width; //change size of canvas based on scaling
               canvas.height = dimensions.height;
