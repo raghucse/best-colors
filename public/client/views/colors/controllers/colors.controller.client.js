@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("ColorsController", ColorsController);
 
-    function ColorsController($location,$rootScope,colorService) {
+    function ColorsController($location,$rootScope,colorService, $timeout) {
         var vm = this;
         vm.searchItems = searchItems;
         vm.setTab = setTab;
@@ -52,9 +52,12 @@
                 .searchItem(vm.color+" "+vm.searchQuery)
                 .then(function (data) {
                 $rootScope.items = data.items;
-                $location.url("/list");
-                });
-          }
+
+                $timeout(function(){
+                    $location.path("/list");
+                    })
+
+            });
         }
 
         function initImage(src, id) {
