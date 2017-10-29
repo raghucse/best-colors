@@ -32,6 +32,8 @@
           'green', 'green', 'green', 'green',
           'red', 'red', 'red', 'red', 'red', 'red', 'red','red','red','red','red','red',
           'black', 'black', 'black', 'black'];
+          console.log(keystring.length);
+          console.log(setkeystring.length);
           for (var index=0;index<keystring.length;index++) {
               myMap.set(keystring[index],setkeystring[index]);
           }
@@ -47,12 +49,10 @@
         }
 
         function searchItems() {
-          if (vm.color.length>0) {
             colorService
                 .searchItem(vm.color+" "+vm.searchQuery)
                 .then(function (data) {
                 $rootScope.items = data.items;
-
                 $timeout(function(){
                     $location.path("/list");
                     })
@@ -83,21 +83,11 @@
               var data = pixel.data;
               console.log("000000" + rgbToHex(data[0], data[1], data[2]).slice(-6));
               var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-              if (hex!='#000000') {
-                color.style.background = hex;
-                color.textcontent = hex;
-                if (myMap.get(hex) == undefined && (hex[1]=='e' || hex[1]=='f')){
-                  vm.color = 'gold'
-                }
-                else if (myMap.get(hex) == undefined && (hex[1]!='e' && hex[1]!='f')) {
-                  vm.color = 'silver';
-                }
-                else {
-                  vm.color = myMap.get(hex);
-                }
-              }
+              color.style.background = hex;
+              color.textcontent = hex;
+              vm.color = myMap.get(hex);
               console.log(vm.color);
-            }
+          }
           canvas.addEventListener('click', pick);
         }
 
