@@ -21,17 +21,21 @@
                 var y = event.layerY;
                 var pixel = ctx.getImageData(x, y, 1, 1);
                 var data = pixel.data;
-                var rgba = 'rgba(' + data[0] + ', ' + data[1] +
-                    ', ' + data[2] + ', ' + (data[3] / 255) + ')';
-                color.style.background =  rgba;
-                color.textContent = rgba;
-                console.log(rgba);
+                var hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
+                color.style.background =  hex;
+                color.textContent = hex;
             }
             canvas.addEventListener('mousemove', pick);
         }
         init();
 
         function submitColor(event) {
+        }
+
+        function rgbToHex(r, g, b) {
+            if (r > 255 || g > 255 || b > 255)
+                throw "Invalid color component";
+            return ((r << 16) | (g << 8) | b).toString(16);
         }
     }
 })();
